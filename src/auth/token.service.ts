@@ -31,7 +31,7 @@ export class TokenService {
     user: User,
   ): Promise<newTokensType> {
     const accessToken = this.generateAccessToken(payload);
-    const refreshToken = await this.generateRefreshToken(payload, user);
+    const refreshToken = user.token.refresh || await this.generateRefreshToken(payload, user);
     return { accessToken, refreshToken };
   }
 
